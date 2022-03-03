@@ -1,0 +1,11 @@
+#There is no efficient way to check if a CrackShot weapon is loaded or not
+#This plugin will load and keep in RAM every name of weapon and damage EVEN IF THE WEAPON IS NOT LOADED!
+#Please remove weapons that are not loaded or that you currently don't use since it will stay in your memory
+#It should not be a problem unless you have an absurd amount of different weapons
+#(which I don't really believe you will ever write a config for)
+
+#The plugin currently overrides the damage of defaultWeapons.yml but it allows you to use decimals
+
+Weapons:
+  Python:
+    7.77

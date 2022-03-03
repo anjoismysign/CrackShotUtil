@@ -1,0 +1,9 @@
+main: us.mytheria.shotutil.ShotUtil
+name: CrackShotUtil
+version: 1.0
+description: CrackShotUtil
+api-version: 1.17
+depend: [ CrackShot ]
+commands:
+  csutil:
+    description: Only one arg
