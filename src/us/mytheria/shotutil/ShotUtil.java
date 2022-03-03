@@ -1,6 +1,5 @@
 package us.mytheria.shotutil;
 
-import com.shampaggon.crackshot.CSUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,26 +17,28 @@ public class ShotUtil extends JavaPlugin implements org.bukkit.event.Listener {
 
     public HashMap<String, Double> weapons = new HashMap<>();
 
-    public CSUtility csInstance;
     Listener listener;
 
     public void onEnable() {
+        instance = this;
         File dir = new File(String.valueOf(this.getDataFolder()));
         if (!dir.exists()) {
             this.saveResource("config.yml", false);
         }
         loadWeapons();
-        listener = new Listener(this);
+        listener = new Listener();
         Bukkit.getPluginManager().registerEvents(this, this);
         Bukkit.getPluginManager().registerEvents(listener, this);
 
     }
 
     public void loadWeapons() {
-        ConfigurationSection configurationSection = getConfig().getConfigurationSection("Weapons");
-        for (String weapon : getConfig().getConfigurationSection("Weapons").getKeys(false)) {
-            double damage = getConfig().getDouble("Weapons." + weapon);
-            weapons.put(weapon, damage);
+        if (getConfig().getConfigurationSection("Weapons") != null) {
+            ConfigurationSection weapons = getConfig().getConfigurationSection("Weapons");
+            for (String weapon : weapons.getKeys(false)) {
+                double damage = getConfig().getDouble("Weapons." + weapon);
+                this.weapons.put(weapon, damage);
+            }
         }
     }
 }
